@@ -5,6 +5,7 @@ updated: 2025-11-29T07:17:33.741479477Z
 draft: false
 description: ""
 image: ""
+cardImage: ""
 category: ["测试"]
 tags: []
 pinned: false

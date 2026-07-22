@@ -5,6 +5,7 @@ updated: 2025-03-16T07:25:51.063691056Z
 draft: false
 description: "好兄弟们一定要珍惜眼前"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:38:37-mxqognkq.webp"
+cardImage: "/post-thumbnails/hou-lai-you-ren-si-ni-san-fen-wo-bian-huang-liao-shen.webp"
 category: ["日常"]
 tags: []
 pinned: false

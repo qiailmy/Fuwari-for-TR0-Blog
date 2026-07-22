@@ -5,6 +5,7 @@ updated: 2025-04-09T05:39:04.479893148Z
 draft: false
 description: "AWS注册需要信用卡，可以使用虚拟卡注册 打开Cloudfront 点击创建"
 image: "https://wuw.wuw.li/upload/1.png"
+cardImage: "/post-thumbnails/li-yong-aws-cloudfrontjia-su-wang-zhan.webp"
 category: []
 tags: []
 pinned: false

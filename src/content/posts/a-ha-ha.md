@@ -5,6 +5,7 @@ updated: 2024-09-28T03:41:31.759473864Z
 draft: false
 description: "啊哈哈"
 image: "https://wuw.wuw.li/upload/101803825_p0.jpg"
+cardImage: "/post-thumbnails/a-ha-ha.webp"
 category: ["日常"]
 tags: []
 pinned: false

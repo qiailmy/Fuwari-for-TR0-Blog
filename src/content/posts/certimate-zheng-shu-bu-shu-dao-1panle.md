@@ -5,6 +5,7 @@ updated: 2025-08-02T12:52:21.972823565Z
 draft: false
 description: "1Panel-URL： 宝塔上方浏览器的地址+端口 例如 https://192.168.69.136:5555/ API密钥： 第二步中复制的接口密钥 例如 W4X7Wxxxxxxxxxxxxxxxx0aaDFLAO 1Panel 证书 ID 即为21<"
 image: "https://wuw.li/r2-assets/tu/2025-08-02T20:50:56-cvklokzw.png"
+cardImage: "/post-thumbnails/certimate-zheng-shu-bu-shu-dao-1panle.webp"
 category: ["测试"]
 tags: []
 pinned: false

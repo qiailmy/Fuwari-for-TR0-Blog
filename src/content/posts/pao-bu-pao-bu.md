@@ -5,6 +5,7 @@ updated: 2025-03-16T07:13:14.908224910Z
 draft: false
 description: "跑步跑步粉色天空"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:43:25-gnifefzf.jpg"
+cardImage: "/post-thumbnails/pao-bu-pao-bu.webp"
 category: ["日常"]
 tags: []
 pinned: false

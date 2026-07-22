@@ -5,6 +5,7 @@ updated: 2025-03-22T02:03:22.154793472Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2024-05-24-vpspbdmo.jpg"
+cardImage: "https://wuw.li/r2-assets/tu/2024-05-24-vpspbdmo.jpg"
 category: []
 tags: ["助理全科医师"]
 pinned: false

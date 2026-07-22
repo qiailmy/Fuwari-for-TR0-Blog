@@ -5,6 +5,7 @@ updated: 2024-05-01T14:25:40.984856776Z
 draft: false
 description: "开启BBR加速 以下 BBR 加速，自选一种： 1、系统自带 BBR 加速 bash echo \"net.core.default_qdisc=fq\" >> /etc/sysctl.conf echo \"net.ipv4.tcp_congestion_control=bbr\" >> /etc/sys"
 image: ""
+cardImage: ""
 category: []
 tags: []
 pinned: false

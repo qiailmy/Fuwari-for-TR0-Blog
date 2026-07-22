@@ -5,6 +5,7 @@ updated: 2024-10-22T07:17:42.319678160Z
 draft: false
 description: "如果你看到了这一篇文章，那么证明你已经安装成功了，感谢使用 Halo 进行创作，希望能够使用愉快。"
 image: ""
+cardImage: ""
 category: ["默认分类"]
 tags: ["Halo"]
 pinned: false

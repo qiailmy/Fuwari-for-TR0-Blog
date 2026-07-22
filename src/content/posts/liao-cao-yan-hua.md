@@ -5,6 +5,7 @@ updated: 2025-03-16T06:52:51.065954160Z
 draft: false
 description: "潦草烟花"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:38:53-inmlqhrn.webp"
+cardImage: "/post-thumbnails/liao-cao-yan-hua.webp"
 category: ["日常"]
 tags: []
 pinned: false

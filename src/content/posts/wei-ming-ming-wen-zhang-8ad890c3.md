@@ -5,6 +5,7 @@ updated: 2024-05-27T01:07:29.872453877Z
 draft: false
 description: "location ^~ /ailm { # 服务器文本 proxy_pass http://127.0.0.1:7777/ailm; proxy_s"
 image: ""
+cardImage: ""
 category: []
 tags: []
 pinned: false

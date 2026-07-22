@@ -5,6 +5,7 @@ updated: 2025-12-04T14:35:11.667749142Z
 draft: false
 description: "有一点点用"
 image: "https://wuw.wuw.li/upload/cj.jpg"
+cardImage: "/post-thumbnails/kao-guo.webp"
 category: ["日常"]
 tags: []
 pinned: false

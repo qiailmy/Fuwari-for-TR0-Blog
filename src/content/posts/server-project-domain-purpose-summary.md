@@ -5,6 +5,7 @@ updated: 2026-07-21T05:55:01.867855018Z
 draft: false
 description: "按项目名称、域名和用途，汇总服务器上的博客、文件服务、在线工具与监控项目。"
 image: "https://wuw.li/r2-assets/tu/2026-07-21T13-vwvxz.webp"
+cardImage: "/post-thumbnails/server-project-domain-purpose-summary.webp"
 category: ["测试"]
 tags: []
 pinned: false

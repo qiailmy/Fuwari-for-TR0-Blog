@@ -5,6 +5,7 @@ updated: 2025-03-16T15:43:29.628825562Z
 draft: false
 description: "好奇怪🤔然后给我退了扳手让我自己留着了"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T23:43:04-afegwadb.webp"
+cardImage: "/post-thumbnails/mai-liao-ge-re-rong-xiao-qiang-fa-liao-ge-ban-shou.webp"
 category: ["日常"]
 tags: []
 pinned: false

@@ -5,6 +5,7 @@ updated: 2026-07-19T00:13:47.816316837Z
 draft: false
 description: "本文重点使用已经上线的实例 https://cap-pow.wuw.li/。需要先说明：这个实例采用的是 onexru/cap-pow-php-server 的接口形态并配有定制前端脚本；它与当前 Cap 官方 Standalone（Docker + Valkey + 站点密钥）不是同一套部署和调用"
 image: "https://wuw.li/r2-assets/tu/2026-07-19T07-4ep69.svg"
+cardImage: "/post-thumbnails/cap-pow-pow-human-verification-guide.webp"
 category: ["测试"]
 tags: []
 pinned: false

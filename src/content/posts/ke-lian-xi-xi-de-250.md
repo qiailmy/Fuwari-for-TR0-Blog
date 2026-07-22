@@ -5,6 +5,7 @@ updated: 2025-06-10T23:45:03.445067191Z
 draft: false
 description: "公积金就250 还没有发"
 image: "https://wuw.li/r2-assets/tu/2025-06-11T07:44:11-hqwnhucv.webp"
+cardImage: "/post-thumbnails/ke-lian-xi-xi-de-250.webp"
 category: []
 tags: []
 pinned: false

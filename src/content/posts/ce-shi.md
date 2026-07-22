@@ -5,6 +5,7 @@ updated: 2025-06-10T23:47:04.645826794Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-06-11T07:42:35-msydqzgm.jpeg"
+cardImage: "/post-thumbnails/ce-shi.webp"
 category: ["壁纸","日常"]
 tags: []
 pinned: false

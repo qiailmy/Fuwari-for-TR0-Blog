@@ -5,6 +5,7 @@ updated: 2025-07-20T10:22:50.096603253Z
 draft: false
 description: "外面很大不能再一直躲起来了"
 image: "https://wuw.li/r2-assets/tu/2025-07-20T18:21:30-jekozdrm.webp"
+cardImage: "/post-thumbnails/hao-hao-xue-xi-ba.webp"
 category: []
 tags: []
 pinned: false

@@ -5,6 +5,7 @@ updated: 2026-07-19T00:29:06.327354055Z
 draft: false
 description: "想给博客加一个有辨识度的访问计数，又不想塞进一整套统计平台，Moe Counter 是一个很轻量的选择：每次请求一个固定名称的计数器，服务端把数字加一，再用指定主题拼成 SVG 返回。本文先以公开实例 https://url.wuw.li/ 演示用法，再按 journey-ad/Moe-Counte"
 image: "https://wuw.li/r2-assets/tu/2026-07-19T08-bys1q.svg"
+cardImage: "/post-thumbnails/moe-counter-deployment-and-usage-guide.webp"
 category: ["测试"]
 tags: []
 pinned: false

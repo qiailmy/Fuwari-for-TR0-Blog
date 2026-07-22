@@ -5,6 +5,7 @@ updated: 2025-05-15T13:43:43.198252559Z
 draft: false
 description: "CFR2防刷WAF设置"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:38:59-lqahoery.webp"
+cardImage: "/post-thumbnails/cfr2fang-shua.webp"
 category: ["日常"]
 tags: []
 pinned: false

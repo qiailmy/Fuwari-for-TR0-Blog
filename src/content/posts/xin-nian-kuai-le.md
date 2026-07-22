@@ -5,6 +5,7 @@ updated: 2025-03-16T07:01:41.407664585Z
 draft: false
 description: "啊哈哈哈"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:38:58-wzpcykmy.webp"
+cardImage: "/post-thumbnails/xin-nian-kuai-le.webp"
 category: []
 tags: []
 pinned: false

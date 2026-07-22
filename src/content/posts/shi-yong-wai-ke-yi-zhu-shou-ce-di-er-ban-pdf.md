@@ -5,6 +5,7 @@ updated: 2025-08-09T13:46:10.315222882Z
 draft: false
 description: "实用外科医嘱手册pdf"
 image: "https://wuw.li/r2-assets/tu/2025-08-09-QHyY5BqeXQ.webp"
+cardImage: "/post-thumbnails/shi-yong-wai-ke-yi-zhu-shou-ce-di-er-ban-pdf.webp"
 category: ["医学"]
 tags: []
 pinned: false

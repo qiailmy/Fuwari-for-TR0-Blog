@@ -5,6 +5,7 @@ updated: 2025-03-16T06:55:41.079367350Z
 draft: false
 description: "好兄弟们遇见喜欢的姑娘一定要去认真大胆地追。"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:40:20-iotclvxl.webp"
+cardImage: "/post-thumbnails/jiu-di-chong-you-bu-jian-gu-ren.webp"
 category: ["日常"]
 tags: []
 pinned: false

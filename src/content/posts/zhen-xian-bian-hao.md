@@ -5,6 +5,7 @@ updated: 2025-06-10T23:44:42.813771358Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-06-11T07:43:23-caqubeze.webp"
+cardImage: "/post-thumbnails/zhen-xian-bian-hao.webp"
 category: []
 tags: []
 pinned: false

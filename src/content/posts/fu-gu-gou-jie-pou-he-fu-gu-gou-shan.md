@@ -5,6 +5,7 @@ updated: 2025-06-20T15:31:16.481628806Z
 draft: false
 description: "文章地址：知乎 博主："
 image: "https://wuw.li/r2-assets/tu/2025-06-18T22:49:59-bcztwfcc.jpg"
+cardImage: "/post-thumbnails/fu-gu-gou-jie-pou-he-fu-gu-gou-shan.webp"
 category: ["医学"]
 tags: []
 pinned: false

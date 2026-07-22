@@ -5,6 +5,7 @@ updated: 2025-03-22T02:11:06.591961733Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:38:59-fsgvasii.webp"
+cardImage: "/post-thumbnails/ye-suan-shi-nian-nian-you-jiang-zhuang-liao.webp"
 category: ["日常"]
 tags: []
 pinned: false

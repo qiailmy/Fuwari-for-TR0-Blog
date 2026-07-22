@@ -5,6 +5,7 @@ updated: 2026-07-19T00:11:30.821221315Z
 draft: false
 description: "本文基于 hicocos/tg-vault 的 main 分支编写，核对版本为提交 2d6204b（2026-07-17）。该项目目前没有 GitHub Release 和 tag，生产环境若重视可复现性，建议部署时固定到已验证的提交，而不是长期无条件追踪 main。 TG Vault 是一个面向个"
 image: "https://wuw.li/r2-assets/tu/2026-07-19T07-cjbkx.svg"
+cardImage: "/post-thumbnails/tg-vault-deployment-guide-optimized.webp"
 category: ["测试"]
 tags: []
 pinned: false

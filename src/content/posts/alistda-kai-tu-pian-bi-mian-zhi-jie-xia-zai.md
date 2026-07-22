@@ -5,6 +5,7 @@ updated: 2025-09-12T16:34:27.816693647Z
 draft: false
 description: "网站-配置文件-增加代码 more_set_headers \"Content-Disposition: inline\";"
 image: ""
+cardImage: ""
 category: ["测试"]
 tags: []
 pinned: false

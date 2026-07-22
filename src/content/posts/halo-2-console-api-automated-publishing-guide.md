@@ -5,6 +5,7 @@ updated: 2026-07-19T00:29:06.496746935Z
 draft: false
 description: "在 Halo 后台手工发一篇文章很简单，自动化却容易出现一种危险的“假成功”：接口返回 200、后台标题也变了，前台仍在展示旧正文。根因通常不是网络，而是 Halo 2.x 把文章资源、可编辑内容快照和已发布快照分开管理。本文给出一条经过实际调用验证的流程：使用 Console API 写入 Pos"
 image: "https://wuw.li/r2-assets/tu/2026-07-19T08-rmzsr.svg"
+cardImage: "/post-thumbnails/halo-2-console-api-automated-publishing-guide.webp"
 category: ["测试"]
 tags: []
 pinned: false

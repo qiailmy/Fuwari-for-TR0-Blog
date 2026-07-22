@@ -5,6 +5,7 @@ updated: 2025-07-09T14:11:51.944534005Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-07-09T22:05:07-vqoukkmd.avif"
+cardImage: "/post-thumbnails/chang-yong-drwei-zhi.webp"
 category: ["医学"]
 tags: []
 pinned: false

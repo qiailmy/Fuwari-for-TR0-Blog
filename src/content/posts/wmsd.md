@@ -5,6 +5,7 @@ updated: 2024-05-27T01:03:37.348127331Z
 draft: false
 description: "乌蒙山连着山外山 月光洒下了响水滩 有没有人能告诉我 可是苍天对妳在呼唤 一座山翻过一条河 千山万水不寂寞 妳来过年华被传说 百里杜鹃不凋落"
 image: "https://tp.ailmy.cn/ailmytu/2024-05-10T00:27:58-xyvzlsnd.jpeg"
+cardImage: "https://tp.ailmy.cn/ailmytu/2024-05-10T00:27:58-xyvzlsnd.jpeg"
 category: []
 tags: []
 pinned: false

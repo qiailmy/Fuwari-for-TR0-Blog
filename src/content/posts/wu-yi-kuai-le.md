@@ -5,6 +5,7 @@ updated: 2025-03-16T07:12:13.111415166Z
 draft: false
 description: "啊哈哈哈"
 image: "https://wuw.wuw.li/upload/22222222222222222222222222222222.jpg"
+cardImage: "/post-thumbnails/wu-yi-kuai-le.webp"
 category: ["日常"]
 tags: []
 pinned: false

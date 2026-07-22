@@ -5,6 +5,7 @@ updated: 2025-03-16T07:12:47.078079647Z
 draft: false
 description: "所愿所成"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:43:25-snompkzt.webp"
+cardImage: "/post-thumbnails/chun-you-hao-xiong-di.webp"
 category: ["日常"]
 tags: []
 pinned: false

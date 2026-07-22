@@ -5,6 +5,7 @@ updated: 2025-04-04T01:15:07.612975836Z
 draft: false
 description: "虚拟卡 挂了梯子 更新2025.04.03gg享年不足一周"
 image: "https://wuw.li/r2-assets/tu/2025-03-31T21:38:52-csftrgbn.png"
+cardImage: "/post-thumbnails/bu-cuo-bu-cuo-jia-gu-wen.webp"
 category: ["日常"]
 tags: []
 pinned: false

@@ -5,6 +5,7 @@ updated: 2025-03-16T07:10:03.411029071Z
 draft: false
 description: "乡镇那么远实在没必要。"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:39:48-qqzkxnyy.webp"
+cardImage: "/post-thumbnails/1a99f956-afe0-4ead-b7e0-18bdc8db18ca.webp"
 category: ["日常"]
 tags: []
 pinned: false

@@ -5,6 +5,7 @@ updated: 2025-10-17T13:25:59.733546106Z
 draft: false
 description: "停地下车库，去开车发现被钥匙从车头划到车尾两道。去洗车发现车被蹭了。不过晚霞蛮好看的。"
 image: "https://wuw.li/r2-assets/tu/2025-08-16T20-h0qcu.jpg?x-oss-process=image/auto-orient,1/resize,p_95/quality,q_80/format,webp"
+cardImage: "/post-thumbnails/jin-tian-che-bei-yao-chi-hua-liao.webp"
 category: ["日常"]
 tags: []
 pinned: false

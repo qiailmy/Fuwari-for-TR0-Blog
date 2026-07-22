@@ -5,6 +5,7 @@ updated: 2025-03-16T07:13:30.153207308Z
 draft: false
 description: "啊哈哈哈 gogo 加油"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:42:59-pflihcwv.webp"
+cardImage: "/post-thumbnails/wu-hu-1-jiang-zhuang.webp"
 category: ["日常"]
 tags: ["助理全科医师"]
 pinned: false

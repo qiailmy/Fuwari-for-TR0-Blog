@@ -5,6 +5,7 @@ updated: 2025-06-30T04:56:48.283952681Z
 draft: false
 description: "来源:https://www.cn-healthcare.com/articlewm/20210417/wap-content-1210968.html 局部封闭第二版 定位：屈膝90°位，髌骨下缘、髌韧带外侧1cm处(外侧膝眼，可看到一小凹陷)。 方法：用指甲定位好后，消毒患处，针头与胫骨平台平行"
 image: "https://wuw.li/r2-assets/tu/2025-06-21T00:24:10-fuuphpwp.png"
+cardImage: "/post-thumbnails/bin-gu-wai-xia-yuan-wai-ce-xi-yan-chuan-ci-fa.webp"
 category: ["医学"]
 tags: []
 pinned: false

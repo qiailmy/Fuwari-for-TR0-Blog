@@ -5,6 +5,7 @@ updated: 2025-06-20T15:31:51.034843388Z
 draft: false
 description: ""
 image: ""
+cardImage: ""
 category: ["医学"]
 tags: []
 pinned: false

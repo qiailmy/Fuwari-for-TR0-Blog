@@ -5,6 +5,7 @@ updated: 2025-04-14T03:51:34.021875106Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:40:33-ofgfzkys.webp"
+cardImage: "/post-thumbnails/xian-hua.webp"
 category: ["壁纸"]
 tags: []
 pinned: false

@@ -5,6 +5,7 @@ updated: 2025-09-15T15:42:55.558792564Z
 draft: false
 description: "门票79包含上下山 很不错注意防晒完美避暑圣"
 image: "https://wuw.li/r2-assets/tu/2025-08-16T12-lnosv.jpg"
+cardImage: "/post-thumbnails/shan-xi-jin-zhong-sheng-wang-ping-ji-xian-yi-ri-you.webp"
 category: []
 tags: []
 pinned: false

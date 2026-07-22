@@ -5,6 +5,7 @@ updated: 2025-04-29T01:54:41.767248878Z
 draft: false
 description: "学到了"
 image: "https://wuw.li/r2-assets/tu/2025-04-29T09:54:04-sskptlys.jpg"
+cardImage: "/post-thumbnails/ck-mbbu-neng-da-yu-ck.webp"
 category: ["医学"]
 tags: []
 pinned: false

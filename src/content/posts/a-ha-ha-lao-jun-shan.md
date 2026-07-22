@@ -5,6 +5,7 @@ updated: 2025-03-16T07:06:24.036359549Z
 draft: false
 description: "啊哈哈老君山"
 image: "https://wuw.wuw.li/upload/wallhaven-7poqw9_2560x1440.jpg"
+cardImage: "/post-thumbnails/a-ha-ha-lao-jun-shan.webp"
 category: ["日常"]
 tags: []
 pinned: false

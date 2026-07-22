@@ -5,6 +5,7 @@ updated: 2025-11-22T11:59:48.601884006Z
 draft: false
 description: ""
 image: ""
+cardImage: ""
 category: ["日常"]
 tags: []
 pinned: false

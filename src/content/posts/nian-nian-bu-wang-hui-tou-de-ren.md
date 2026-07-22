@@ -5,6 +5,7 @@ updated: 2025-03-16T07:15:34.926618584Z
 draft: false
 description: "工作以前的总结吧"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:39:49-xvutawko.webp"
+cardImage: "/post-thumbnails/nian-nian-bu-wang-hui-tou-de-ren.webp"
 category: ["日常"]
 tags: []
 pinned: false

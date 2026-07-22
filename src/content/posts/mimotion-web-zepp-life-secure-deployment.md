@@ -5,6 +5,7 @@ updated: 2026-07-21T01:43:04.402972235Z
 draft: false
 description: "导语 TonyJiangWJ/mimotion 是一个成熟、直接的 Zepp Life（原小米运动）步数同步工具。本文基于上游 commit a0f614e 做一次“外围 Web 化”：保留原项目的一键 Python 任务及其登录、提交步数逻辑，只增加网页表单、FastAPI 接口、访问频率限制、C"
 image: "https://wuw.li/r2-assets/tu/2026-07-20T17-8yi3v.svg"
+cardImage: "/post-thumbnails/mimotion-web-zepp-life-secure-deployment.webp"
 category: ["测试"]
 tags: []
 pinned: false

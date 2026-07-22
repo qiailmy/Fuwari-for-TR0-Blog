@@ -5,6 +5,7 @@ updated: 2024-09-25T15:59:36.875195596Z
 draft: false
 description: "将client_max_body_size的值改为9000m即不会报错。"
 image: "https://wuw.wuw.li/upload/image.png"
+cardImage: "/post-thumbnails/1panel-alistshang-chuan-da-wen-jian-bao-cuo-request-failed-with-status-code-413.webp"
 category: []
 tags: []
 pinned: false

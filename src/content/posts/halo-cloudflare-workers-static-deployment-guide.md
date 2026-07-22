@@ -5,6 +5,7 @@ updated: 2026-07-21T01:38:53.459095317Z
 draft: false
 description: "保留 Halo 作为内容后台，把公开页面静态化到 Cloudflare Workers，并使用 R2 管理图片：从架构、导出、部署到评论点赞安全代理的完整实践。"
 image: "https://wuw.li/r2-assets/tu/2026-07-21T09-e3kur.webp"
+cardImage: "/post-thumbnails/halo-cloudflare-workers-static-deployment-guide.webp"
 category: ["测试"]
 tags: []
 pinned: false

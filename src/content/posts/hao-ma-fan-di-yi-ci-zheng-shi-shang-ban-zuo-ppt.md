@@ -5,6 +5,7 @@ updated: 2025-03-16T06:45:00.941929440Z
 draft: false
 description: "做出来的真难看啊 应该不会用我的了"
 image: "https://wuw.li/r2-assets/tu/2025-03-16T14:38:23-bykugqhh.webp"
+cardImage: "/post-thumbnails/hao-ma-fan-di-yi-ci-zheng-shi-shang-ban-zuo-ppt.webp"
 category: ["日常"]
 tags: []
 pinned: false

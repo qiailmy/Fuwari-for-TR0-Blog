@@ -5,6 +5,7 @@ updated: 2025-04-15T15:27:04.150490053Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-03-16T23:38:02-jmlvmtev.avif"
+cardImage: "/post-thumbnails/tu-pian-ge-shi-ce-shi.webp"
 category: []
 tags: []
 pinned: false

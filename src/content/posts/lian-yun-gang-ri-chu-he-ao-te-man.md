@@ -5,6 +5,7 @@ updated: 2025-04-07T03:32:41.054393907Z
 draft: false
 description: ""
 image: "https://wuw.li/r2-assets/tu/2025-04-07T11:27:24-syvmmidf.webp"
+cardImage: "/post-thumbnails/lian-yun-gang-ri-chu-he-ao-te-man.webp"
 category: ["日常"]
 tags: []
 pinned: false
