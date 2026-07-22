@@ -28,7 +28,7 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://www.tr0.cn",
+	site: process.env.SITE_URL || "https://fuwari-blog.qiailmy.workers.dev",
 	base: "/",
 	trailingSlash: "ignore",
 

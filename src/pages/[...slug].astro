@@ -45,7 +45,7 @@ const jsonLd = {
 	// TODO include cover image here
 };
 ---
-<link href="https://api.eta.im/dist/Artalk.css" rel="stylesheet" />
+<link href="/static-comment/comment-next.css?v=1.0.5" rel="stylesheet" />
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
@@ -127,5 +127,13 @@ const jsonLd = {
             </div>}
         </a>
     </div>
+
+    {entry.data.allowComment && entry.data.haloName && (
+		<div id="comment" class="card-base p-5 md:p-7 mb-4 overflow-hidden">
+			<comment-widget group="content.halo.run" kind="Post" name={entry.data.haloName}></comment-widget>
+		</div>
+	)}
+	<script is:inline src="/static-comment/comment-bridge.js?v=20260722-1"></script>
+	<script is:inline defer src="/static-comment/comment-next.js?v=1.0.5"></script>
 
 </MainGridLayout>

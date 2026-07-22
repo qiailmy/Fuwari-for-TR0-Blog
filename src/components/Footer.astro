@@ -21,4 +21,64 @@ const currentYear = new Date().getFullYear();
         )}
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.title}. All Rights Reserved.
     </div>
+	<div class="footer-service-badges" aria-label="站点服务状态">
+		<a href="https://www.cloudflare.com/zh-cn/application-services/products/cdn/" title="CDN: Cloudflare CDN" target="_blank" rel="noopener noreferrer">
+			<img src="https://wuw.li/r2-assets/tu/2025-09-13T00-56a1t.svg" alt="CDN: Cloudflare CDN" loading="lazy" decoding="async" width="120" height="30" />
+		</a>
+		<a id="workers-usage-card" href="https://worker.wuw.li/" title="Workers 今日请求量（UTC）" target="_blank" rel="noopener noreferrer">
+			<span>Workers</span>
+			<strong id="workers-usage-value">加载中</strong>
+		</a>
+	</div>
+	<img class="visitor-counter" src="https://url.wuw.li/@dggdkl?name=dggdkl&amp;theme=moebooru&amp;padding=7&amp;offset=0&amp;align=top&amp;scale=1&amp;pixelated=1&amp;darkmode=auto" alt="dggdkl 访问计数" loading="lazy" decoding="async" width="315" height="100" />
 </div>
+
+<script is:inline src="/workers-usage.js"></script>
+
+<style>
+.footer-service-badges {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+	margin-top: 0.75rem;
+}
+
+.footer-service-badges > a:first-child,
+.footer-service-badges > a:first-child img {
+	display: block;
+}
+
+#workers-usage-card {
+	display: inline-flex;
+	align-items: center;
+	height: 20px;
+	overflow: hidden;
+	border-radius: 3px;
+	color: #fff;
+	font: 11px/20px Arial, sans-serif;
+	text-decoration: none;
+}
+
+#workers-usage-card span {
+	padding: 0 5px;
+	background: #555;
+}
+
+#workers-usage-value {
+	min-width: 32px;
+	padding: 0 5px;
+	background: #f38020;
+	text-align: center;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+
+.visitor-counter {
+	display: block;
+	width: min(315px, 100%);
+	height: auto;
+	margin: 0.5rem auto 0;
+}
+</style>

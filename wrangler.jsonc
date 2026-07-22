@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "fuwari-blog",
+  "main": "./src/worker.js",
+  "compatibility_date": "2026-07-20",
+  "vars": {
+    "COMMENT_PROXY_ORIGIN": "https://wuw.wuw.li",
+    "HALO_ORIGIN": "https://wuw.wuw.li"
+  },
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "kv_namespaces": [
+    { "binding": "HALO_SYNC_STATE", "id": "7403d503f71b414f946024694e746f8b" }
+  ],
+  "r2_buckets": [
+    { "binding": "IMAGE_BUCKET", "bucket_name": "ailmy" }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page"
+  }
+}

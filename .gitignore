@@ -1,11 +1,13 @@
 # build output
 dist/
+.wrangler/
 
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+.halo-sync-state.json
 
 # logs
 npm-debug.log*

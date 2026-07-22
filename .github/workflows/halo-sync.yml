@@ -1,0 +1,74 @@
+name: Sync Halo and deploy Fuwari
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: fuwari-production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check Cloudflare sync queue
+        id: queue
+        env:
+          SYNC_STATUS_URL: https://wuw.li/static-api/halo-sync
+        run: |
+          status="$(curl --fail --silent --show-error --retry 3 "$SYNC_STATUS_URL")"
+          echo "pending=$(jq -r '.pending')" >> "$GITHUB_OUTPUT"
+          echo "signature=$(jq -r '.signature // empty')" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup pnpm
+        if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          run_install: false
+
+      - name: Setup Node.js
+        if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
+        run: pnpm install --frozen-lockfile
+
+      - name: Import current Halo content
+        if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          HALO_ORIGIN: https://wuw.wuw.li
+        run: pnpm import:halo
+
+      - name: Build and deploy to Cloudflare Workers
+        if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: pnpm deploy
+
+      - name: Mark queued revision as deployed
+        if: success() && steps.queue.outputs.pending == 'true'
+        env:
+          SYNC_STATUS_URL: https://wuw.li/static-api/halo-sync
+          HALO_SYNC_CALLBACK_TOKEN: ${{ secrets.HALO_SYNC_CALLBACK_TOKEN }}
+          SIGNATURE: ${{ steps.queue.outputs.signature }}
+        run: |
+          jq -n --arg signature "$SIGNATURE" '{signature:$signature}' |
+            curl --fail --silent --show-error --retry 3 \
+              -H "Authorization: Bearer $HALO_SYNC_CALLBACK_TOKEN" \
+              -H "Content-Type: application/json" \
+              --data-binary @- "$SYNC_STATUS_URL"
