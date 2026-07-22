@@ -3,7 +3,9 @@ import path from "node:path";
 
 const origin = new URL(process.env.HALO_ORIGIN || "http://127.0.0.1:8090").origin;
 const outputDir = path.resolve("src/content/posts");
-const FALLBACK_COVER = "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp";
+const stagingDir = path.resolve("src/content/.posts-import-staging");
+const backupDir = path.resolve("src/content/.posts-import-backup");
+const PAGE_SIZE = 100;
 const MISSING_LEGACY_ASSETS = new Set([
 	"https://img.wuw.li/tu/2024-09-25T23:54:51-sqazpumh.jpg",
 	"https://img.wuw.li/tu/2025-02-02T18:10:59-mfbstfkq.png",
@@ -31,9 +33,9 @@ function stripMissingLegacyImages(value) {
 }
 
 function normalizeCover(value) {
-	if (!value) return FALLBACK_COVER;
+	if (!value) return "";
 	const clean = String(value).split("?")[0];
-	if (MISSING_LEGACY_ASSETS.has(clean)) return FALLBACK_COVER;
+	if (MISSING_LEGACY_ASSETS.has(clean)) return "";
 	return normalizeHaloAssetUrls(value);
 }
 
@@ -49,29 +51,61 @@ function validPost(post) {
 }
 
 async function haloJson(pathname) {
-	const response = await fetch(`${origin}${pathname}`, {
-		headers: { Accept: "application/json", "User-Agent": "Fuwari-Halo-Importer/1.0" },
-	});
-	if (!response.ok) throw new Error(`${response.status} ${pathname}`);
-	return response.json();
+	let lastError;
+	for (let attempt = 1; attempt <= 3; attempt++) {
+		try {
+			const response = await fetch(`${origin}${pathname}`, {
+				headers: { Accept: "application/json", "User-Agent": "Fuwari-Halo-Importer/1.0" },
+				signal: AbortSignal.timeout(20_000),
+			});
+			if (!response.ok) throw new Error(`${response.status} ${pathname}`);
+			return await response.json();
+		} catch (error) {
+			lastError = error;
+			if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 1_000));
+		}
+	}
+	throw lastError;
 }
 
-const listing = await haloJson("/apis/api.content.halo.run/v1alpha1/posts?page=1&size=1000");
-const posts = listing.items.filter(validPost);
+async function listAllPosts() {
+	const items = [];
+	for (let page = 1; ; page++) {
+		const listing = await haloJson(`/apis/api.content.halo.run/v1alpha1/posts?page=${page}&size=${PAGE_SIZE}`);
+		const pageItems = listing.items || [];
+		items.push(...pageItems);
+		const total = Number(listing.total ?? listing.totalElements);
+		const hasNext = typeof listing.hasNext === "boolean"
+			? listing.hasNext
+			: Number.isFinite(total) ? items.length < total : pageItems.length === PAGE_SIZE;
+		if (!hasNext) return items;
+		if (page >= 100) throw new Error("Halo post listing exceeded 10,000 records");
+	}
+}
+
+function safeSlug(value) {
+	const slug = String(value || "").toLowerCase().replace(/[.\s]+$/g, "");
+	if (!slug || slug === "." || slug === ".." || !/^[a-z0-9._~-]+$/i.test(slug)) {
+		throw new Error(`Unsafe Halo slug: ${JSON.stringify(value)}`);
+	}
+	return slug;
+}
+
+const posts = (await listAllPosts()).filter(validPost);
 const slugCounts = new Map();
 for (const post of posts) {
-	const slug = post.spec.slug;
+	const slug = safeSlug(post.spec.slug);
 	slugCounts.set(slug, (slugCounts.get(slug) || 0) + 1);
 }
 
-await fs.rm(outputDir, { recursive: true, force: true });
-await fs.mkdir(outputDir, { recursive: true });
+await fs.rm(stagingDir, { recursive: true, force: true });
+await fs.mkdir(stagingDir, { recursive: true });
 
 const manifest = [];
 for (const [index, summary] of posts.entries()) {
 	const post = await haloJson(`/apis/api.content.halo.run/v1alpha1/posts/${encodeURIComponent(summary.metadata.name)}`);
-	const duplicateSlug = slugCounts.get(post.spec.slug) > 1;
-	const sourceSlug = String(post.spec.slug).toLowerCase().replace(/[.\s]+$/g, "");
+	const sourceSlug = safeSlug(post.spec.slug);
+	const duplicateSlug = slugCounts.get(sourceSlug) > 1;
 	const slug = duplicateSlug ? `${sourceSlug}-${post.metadata.name.slice(0, 8).toLowerCase()}` : sourceSlug;
 	const categories = (post.categories || []).map((item) => item.spec.displayName).filter(Boolean);
 	const tags = (post.tags || []).map((item) => item.spec.displayName).filter(Boolean);
@@ -92,12 +126,31 @@ for (const [index, summary] of posts.entries()) {
 		"---",
 		"",
 	].join("\n");
-	await fs.writeFile(path.join(outputDir, `${slug}.md`), `${frontmatter}${body}\n`);
+	const target = path.resolve(stagingDir, `${slug}.md`);
+	if (!target.startsWith(`${stagingDir}${path.sep}`)) throw new Error(`Unsafe output path for slug: ${slug}`);
+	await fs.writeFile(target, `${frontmatter}${body}\n`);
 	manifest.push({ slug, haloName: post.metadata.name, title: post.spec.title, allowComment: post.spec.allowComment !== false });
 	process.stdout.write(`\rImported ${index + 1}/${posts.length}`);
 }
 
 await fs.mkdir("public", { recursive: true });
-await fs.writeFile("public/comment-subjects.json", JSON.stringify({ posts: manifest.filter((post) => post.allowComment).map((post) => post.haloName) }));
-await fs.writeFile("public/halo-content-manifest.json", JSON.stringify({ generatedAt: new Date().toISOString(), posts: manifest }, null, 2));
+const commentSubjects = JSON.stringify({ posts: manifest.filter((post) => post.allowComment).map((post) => post.haloName) });
+const contentManifest = JSON.stringify({ generatedAt: new Date().toISOString(), posts: manifest }, null, 2);
+
+await fs.rm(backupDir, { recursive: true, force: true });
+try {
+	await fs.rename(outputDir, backupDir);
+} catch (error) {
+	if (error.code !== "ENOENT") throw error;
+}
+try {
+	await fs.rename(stagingDir, outputDir);
+	await fs.writeFile("public/comment-subjects.json", commentSubjects);
+	await fs.writeFile("public/halo-content-manifest.json", contentManifest);
+	await fs.rm(backupDir, { recursive: true, force: true });
+} catch (error) {
+	await fs.rm(outputDir, { recursive: true, force: true });
+	try { await fs.rename(backupDir, outputDir); } catch {}
+	throw error;
+}
 console.log(`\nImported ${posts.length} published posts (${manifest.filter((post) => post.allowComment).length} comment-enabled).`);

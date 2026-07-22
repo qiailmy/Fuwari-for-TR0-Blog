@@ -4,7 +4,7 @@ published: 2024-05-17T14:40:00Z
 updated: 2024-05-27T01:07:29.872453877Z
 draft: false
 description: "location ^~ /ailm { # 服务器文本 proxy_pass http://127.0.0.1:7777/ailm; proxy_s"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: []
 tags: []
 pinned: false

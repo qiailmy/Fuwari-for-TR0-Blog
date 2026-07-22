@@ -12,6 +12,7 @@ const R2_ASSET_PREFIX = "/r2-assets/";
 const HALO_SYNC_PATH = "/static-api/halo-sync";
 const HALO_OBSERVED_KEY = "halo:observed-signature";
 const HALO_DEPLOYED_KEY = "halo:deployed-signature";
+const HALO_PAGE_SIZE = 100;
 
 function publishedPostSnapshot(post) {
 	return {
@@ -35,12 +36,24 @@ async function sha256(value) {
 
 async function fetchHaloSignature(env) {
 	const origin = new URL(env.HALO_ORIGIN).origin;
-	const response = await fetch(`${origin}/apis/api.content.halo.run/v1alpha1/posts?page=1&size=1000`, {
-		headers: { Accept: "application/json", "User-Agent": "Fuwari-Halo-Cron/1.0" },
-	});
-	if (!response.ok) throw new Error(`Halo content check failed: HTTP ${response.status}`);
-	const listing = await response.json();
-	const snapshot = (listing.items || [])
+	const posts = [];
+	for (let page = 1; ; page++) {
+		const response = await fetch(`${origin}/apis/api.content.halo.run/v1alpha1/posts?page=${page}&size=${HALO_PAGE_SIZE}`, {
+			headers: { Accept: "application/json", "User-Agent": "Fuwari-Halo-Cron/1.0" },
+			signal: AbortSignal.timeout(20_000),
+		});
+		if (!response.ok) throw new Error(`Halo content check failed: HTTP ${response.status}`);
+		const listing = await response.json();
+		const pageItems = listing.items || [];
+		posts.push(...pageItems);
+		const total = Number(listing.total ?? listing.totalElements);
+		const hasNext = typeof listing.hasNext === "boolean"
+			? listing.hasNext
+			: Number.isFinite(total) ? posts.length < total : pageItems.length === HALO_PAGE_SIZE;
+		if (!hasNext) break;
+		if (page >= 100) throw new Error("Halo post listing exceeded 10,000 records");
+	}
+	const snapshot = posts
 		.map(publishedPostSnapshot)
 		.sort((a, b) => String(a.name).localeCompare(String(b.name)));
 	return { signature: await sha256(JSON.stringify(snapshot)), records: snapshot.length };
@@ -98,7 +111,7 @@ async function serveR2Asset(request, env, url) {
 	} catch {
 		return new Response("Bad Request", { status: 400 });
 	}
-	if (!key) return new Response("Not Found", { status: 404 });
+	if (!key || !key.startsWith("tu/")) return new Response("Not Found", { status: 404 });
 	const object = await env.IMAGE_BUCKET.get(key, request.headers.has("Range")
 		? { range: request.headers }
 		: undefined);

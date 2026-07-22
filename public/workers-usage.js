@@ -9,9 +9,9 @@
 	}
 
 	async function refresh() {
-		const card = document.getElementById("workers-usage-card");
-		const value = document.getElementById("workers-usage-value");
-		if (!card || !value || loading) return;
+		const cards = document.querySelectorAll(".workers-usage-card");
+		const values = document.querySelectorAll(".workers-usage-value");
+		if (!cards.length || !values.length || loading) return;
 		loading = true;
 		clearTimeout(retryTimer);
 		try {
@@ -22,11 +22,19 @@
 			const requestPercent = Number(data.requestPercent);
 			if (!Number.isFinite(requests) || !Number.isFinite(requestPercent)) throw new Error("Invalid usage data");
 			const percentText = `${requestPercent.toFixed(1).replace(".0", "")}%`;
-			value.textContent = `${shortNumber(requests)} ${percentText}`;
-			card.title = `Workers 今日请求量（UTC）：${requests.toLocaleString("zh-CN")}，使用率：${percentText}`;
+			values.forEach((value) => {
+				value.textContent = `${shortNumber(requests)} ${percentText}`;
+			});
+			cards.forEach((card) => {
+				card.title = `Workers 今日请求量（UTC）：${requests.toLocaleString("zh-CN")}，使用率：${percentText}`;
+			});
 		} catch {
-			value.textContent = "--";
-			card.title = "Workers 请求量暂不可用，正在重试";
+			values.forEach((value) => {
+				value.textContent = "--";
+			});
+			cards.forEach((card) => {
+				card.title = "Workers 请求量暂不可用，正在重试";
+			});
 			retryTimer = setTimeout(refresh, 10000);
 		} finally {
 			loading = false;

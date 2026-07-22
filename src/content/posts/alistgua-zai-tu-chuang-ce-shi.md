@@ -4,7 +4,7 @@ published: 2024-05-01T14:34:00Z
 updated: 2025-08-16T03:22:18.980726729Z
 draft: false
 description: "3 12"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: []
 tags: []
 pinned: false

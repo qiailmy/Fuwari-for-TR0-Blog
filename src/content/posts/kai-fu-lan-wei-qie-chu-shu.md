@@ -4,7 +4,7 @@ published: 2025-06-11T14:41:17.918056430Z
 updated: 2025-06-20T15:31:51.034843388Z
 draft: false
 description: ""
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["医学"]
 tags: []
 pinned: false

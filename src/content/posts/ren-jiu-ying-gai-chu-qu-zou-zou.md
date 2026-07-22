@@ -4,7 +4,7 @@ published: 2025-09-01T13:33:47.471941532Z
 updated: 2025-11-22T11:55:33.104163184Z
 draft: false
 description: "日光落在地上的影子真好"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["日常"]
 tags: []
 pinned: false

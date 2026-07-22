@@ -4,7 +4,7 @@ published: 2024-07-30T02:55:26.861298314Z
 updated: 2025-03-16T07:04:46.989704676Z
 draft: false
 description: "都说年少不知少年愁"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["日常"]
 tags: []
 pinned: false

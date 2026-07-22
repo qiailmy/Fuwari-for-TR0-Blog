@@ -4,7 +4,7 @@ published: 2025-05-01T05:16:06.143340833Z
 updated: 2025-01-21T09:04:36.864601681Z
 draft: false
 description: "啊哈哈"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: []
 tags: []
 pinned: false

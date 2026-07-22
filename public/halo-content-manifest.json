@@ -1,12 +1,6 @@
 {
-  "generatedAt": "2026-07-22T08:41:36.995Z",
+  "generatedAt": "2026-07-22T14:27:55.967Z",
   "posts": [
-    {
-      "slug": "019f88b9-35fc-778e-981d-1ae34a91b8b7",
-      "haloName": "019f88b9-2d81-7572-b197-eb00b10a291a",
-      "title": "测试",
-      "allowComment": true
-    },
     {
       "slug": "server-project-domain-purpose-summary",
       "haloName": "post-b9kfbqkt",

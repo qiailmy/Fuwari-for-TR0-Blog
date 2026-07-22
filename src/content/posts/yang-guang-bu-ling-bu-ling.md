@@ -4,7 +4,7 @@ published: 2025-09-15T15:04:53.404813158Z
 updated: 2025-11-22T12:01:06.909560576Z
 draft: false
 description: "啊哈"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["日常"]
 tags: []
 pinned: false

@@ -25,15 +25,13 @@ const currentYear = new Date().getFullYear();
 		<a href="https://www.cloudflare.com/zh-cn/application-services/products/cdn/" title="CDN: Cloudflare CDN" target="_blank" rel="noopener noreferrer">
 			<img src="https://wuw.li/r2-assets/tu/2025-09-13T00-56a1t.svg" alt="CDN: Cloudflare CDN" loading="lazy" decoding="async" width="120" height="30" />
 		</a>
-		<a id="workers-usage-card" href="https://worker.wuw.li/" title="Workers 今日请求量（UTC）" target="_blank" rel="noopener noreferrer">
+		<a class="workers-usage-card" href="https://worker.wuw.li/" title="Workers 今日请求量（UTC）" target="_blank" rel="noopener noreferrer">
 			<span>Workers</span>
-			<strong id="workers-usage-value">加载中</strong>
+			<strong class="workers-usage-value">加载中</strong>
 		</a>
 	</div>
 	<img class="visitor-counter" src="https://url.wuw.li/@dggdkl?name=dggdkl&amp;theme=moebooru&amp;padding=7&amp;offset=0&amp;align=top&amp;scale=1&amp;pixelated=1&amp;darkmode=auto" alt="dggdkl 访问计数" loading="lazy" decoding="async" width="315" height="100" />
 </div>
-
-<script is:inline src="/workers-usage.js"></script>
 
 <style>
 .footer-service-badges {
@@ -50,7 +48,7 @@ const currentYear = new Date().getFullYear();
 	display: block;
 }
 
-#workers-usage-card {
+.workers-usage-card {
 	display: inline-flex;
 	align-items: center;
 	height: 20px;
@@ -61,12 +59,12 @@ const currentYear = new Date().getFullYear();
 	text-decoration: none;
 }
 
-#workers-usage-card span {
+.workers-usage-card span {
 	padding: 0 5px;
 	background: #555;
 }
 
-#workers-usage-value {
+.workers-usage-value {
 	min-width: 32px;
 	padding: 0 5px;
 	background: #f38020;

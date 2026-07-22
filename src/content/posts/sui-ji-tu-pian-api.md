@@ -4,7 +4,7 @@ published: 2022-11-27T02:25:00Z
 updated: 2024-09-25T16:00:10.667117749Z
 draft: false
 description: "randomimg.php <?php //存有链接的文件名 $filename = \"randomimg.txt\"; //从文本获取链接 $pics = []; $fs = fopen($filename, \"r\"); while(!feof($fs)){ $line=trim(fgets($fs"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: []
 tags: []
 pinned: false

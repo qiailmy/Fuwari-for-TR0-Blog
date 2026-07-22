@@ -4,7 +4,7 @@ published: 2025-05-26T07:33:26.401896048Z
 updated: 2025-05-30T14:02:48.992246071Z
 draft: false
 description: ""
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["日常"]
 tags: []
 pinned: false

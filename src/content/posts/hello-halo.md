@@ -4,7 +4,7 @@ published: 2022-08-03T11:03:00Z
 updated: 2024-10-22T07:17:42.319678160Z
 draft: false
 description: "如果你看到了这一篇文章，那么证明你已经安装成功了，感谢使用 Halo 进行创作，希望能够使用愉快。"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["默认分类"]
 tags: ["Halo"]
 pinned: false

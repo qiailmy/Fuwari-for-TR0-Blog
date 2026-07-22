@@ -4,7 +4,7 @@ published: 2025-08-26T14:25:19.036972452Z
 updated: 2025-11-29T07:17:33.741479477Z
 draft: false
 description: ""
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: ["测试"]
 tags: []
 pinned: false

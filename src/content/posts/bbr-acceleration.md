@@ -4,7 +4,7 @@ published: 2024-04-14T09:21:00Z
 updated: 2024-05-01T14:25:40.984856776Z
 draft: false
 description: "开启BBR加速 以下 BBR 加速，自选一种： 1、系统自带 BBR 加速 bash echo \"net.core.default_qdisc=fq\" >> /etc/sysctl.conf echo \"net.ipv4.tcp_congestion_control=bbr\" >> /etc/sys"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: []
 tags: []
 pinned: false

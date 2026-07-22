@@ -4,7 +4,7 @@ published: 2024-05-05T05:15:00Z
 updated: 2024-09-28T03:42:30.424396494Z
 draft: false
 description: "来源： 酷安老哥：http://www.coolapk.com/u/1550738"
-image: "https://wuw.li/r2-assets/tu/2026-07-22T15-e21iq.webp"
+image: ""
 category: []
 tags: []
 pinned: false
