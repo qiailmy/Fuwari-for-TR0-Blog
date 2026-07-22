@@ -20,7 +20,7 @@ jobs:
       - name: Check Cloudflare sync queue
         id: queue
         env:
-          SYNC_STATUS_URL: https://wuw.li/static-api/halo-sync
+          SYNC_STATUS_URL: https://fuwari-blog.qiailmy.workers.dev/static-api/halo-sync
         run: |
           status="$(curl --fail --silent --show-error --retry 3 "$SYNC_STATUS_URL")"
           echo "pending=$(jq -r '.pending')" >> "$GITHUB_OUTPUT"
@@ -63,7 +63,7 @@ jobs:
       - name: Mark queued revision as deployed
         if: success() && steps.queue.outputs.pending == 'true'
         env:
-          SYNC_STATUS_URL: https://wuw.li/static-api/halo-sync
+          SYNC_STATUS_URL: https://fuwari-blog.qiailmy.workers.dev/static-api/halo-sync
           HALO_SYNC_CALLBACK_TOKEN: ${{ secrets.HALO_SYNC_CALLBACK_TOKEN }}
           SIGNATURE: ${{ steps.queue.outputs.signature }}
         run: |
