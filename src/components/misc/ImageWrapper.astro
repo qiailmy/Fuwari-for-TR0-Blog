@@ -47,7 +47,7 @@ if (isLocal) {
 const imageClass = "w-full h-full object-cover";
 const imageStyle = `object-position: ${position}`;
 ---
-<div id={id} class:list={[className, 'overflow-hidden relative']}>
+<div id={id} data-image-wrapper class:list={[className, 'overflow-hidden relative']}>
     <!-- 加载占位符 -->
     <div class="image-loading absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 z-10">
         <div class="loading-spinner w-8 h-8 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full animate-spin"></div>
@@ -84,58 +84,47 @@ const imageStyle = `object-position: ${position}`;
 </div>
 
 <script>
-    // 图片加载处理
-    function handleImageLoad() {
-        const images = document.querySelectorAll('.image-wrapper-img');
-        
-        images.forEach(imgElement => {
-            const img = imgElement as HTMLImageElement;
-            const container = img.closest('[class*="overflow-hidden"]');
-            if (!container) return;
-            
-            const loadingEl = container.querySelector('.image-loading') as HTMLElement;
-            const errorEl = container.querySelector('.image-error') as HTMLElement;
-            
-            // 图片加载成功
-            const onLoad = () => {
-                img.style.opacity = '1';
-                if (loadingEl) loadingEl.style.display = 'none';
-                if (errorEl) errorEl.style.display = 'none';
-            };
-            
-            // 图片加载失败
-            const onError = () => {
-                if (loadingEl) loadingEl.style.display = 'none';
-                if (errorEl) errorEl.style.display = 'flex';
-                img.style.display = 'none';
-            };
-            
-            // 检查图片是否已经加载完成
-            if (img.complete && img.naturalHeight !== 0) {
-                onLoad();
-            } else {
-                img.addEventListener('load', onLoad);
-                img.addEventListener('error', onError);
-            }
-        });
-    }
-    
-    // 页面加载完成后执行
+    const initializeImage = (img: HTMLImageElement) => {
+        if (img.dataset.imageWrapperReady === 'true') return;
+        img.dataset.imageWrapperReady = 'true';
+
+        const container = img.closest('[data-image-wrapper]');
+        if (!container) return;
+
+        const loadingEl = container.querySelector('.image-loading') as HTMLElement | null;
+        const errorEl = container.querySelector('.image-error') as HTMLElement | null;
+
+        const onLoad = () => {
+            img.style.opacity = '1';
+            if (loadingEl) loadingEl.style.display = 'none';
+            if (errorEl) errorEl.style.display = 'none';
+        };
+
+        const onError = () => {
+            if (loadingEl) loadingEl.style.display = 'none';
+            if (errorEl) errorEl.style.display = 'flex';
+            img.style.display = 'none';
+        };
+
+        if (img.complete) {
+            img.naturalHeight !== 0 ? onLoad() : onError();
+            return;
+        }
+
+        img.addEventListener('load', onLoad, { once: true });
+        img.addEventListener('error', onError, { once: true });
+    };
+
+    const initializeImages = (root: ParentNode = document) => {
+        root.querySelectorAll<HTMLImageElement>('.image-wrapper-img').forEach(initializeImage);
+    };
+
+    const startImageHandling = () => initializeImages();
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', handleImageLoad);
+        document.addEventListener('DOMContentLoaded', startImageHandling, { once: true });
     } else {
-        handleImageLoad();
+        startImageHandling();
     }
-    
-    // 支持动态加载的图片
-    const observer = new MutationObserver(() => {
-        handleImageLoad();
-    });
-    
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
 </script>
 
 <style>

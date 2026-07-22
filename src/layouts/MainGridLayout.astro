@@ -144,12 +144,27 @@ let links: NavBarLink[] = navBarConfig.links.map(
 
 <script>
     const overlay = document.getElementById('loading-overlay');
+    let navigationOverlayTimer: number | undefined;
 
-    const showLoadingOverlay = () => {
-        overlay?.classList.remove('loading-overlay-hidden');
+    const cancelNavigationOverlay = () => {
+        if (navigationOverlayTimer !== undefined) {
+            window.clearTimeout(navigationOverlayTimer);
+            navigationOverlayTimer = undefined;
+        }
+    };
+
+    const showLoadingOverlayForSlowNavigation = () => {
+        cancelNavigationOverlay();
+        // Fast cached navigations should feel instant. Only cover the page when a
+        // navigation is genuinely taking long; this timer never delays navigation.
+        navigationOverlayTimer = window.setTimeout(() => {
+            overlay?.classList.remove('loading-overlay-hidden');
+            navigationOverlayTimer = undefined;
+        }, 350);
     };
 
     const hideLoadingOverlay = () => {
+        cancelNavigationOverlay();
         requestAnimationFrame(() => overlay?.classList.add('loading-overlay-hidden'));
     };
 
@@ -160,6 +175,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
     }
 
     window.addEventListener('pageshow', hideLoadingOverlay);
+    window.addEventListener('pagehide', cancelNavigationOverlay);
     document.addEventListener('click', (event) => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
@@ -172,7 +188,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
         if (destination.origin !== window.location.origin) return;
         if (destination.pathname === window.location.pathname && destination.search === window.location.search && destination.hash) return;
 
-        showLoadingOverlay();
+        showLoadingOverlayForSlowNavigation();
     });
 </script>
 
