@@ -58,7 +58,7 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: pnpm deploy
+        run: pnpm run deploy
 
       - name: Mark queued revision as deployed
         if: success() && steps.queue.outputs.pending == 'true'
