@@ -23,8 +23,8 @@ jobs:
           SYNC_STATUS_URL: https://fuwari-blog.qiailmy.workers.dev/static-api/halo-sync
         run: |
           status="$(curl --fail --silent --show-error --retry 3 "$SYNC_STATUS_URL")"
-          echo "pending=$(jq -r '.pending')" >> "$GITHUB_OUTPUT"
-          echo "signature=$(jq -r '.signature // empty')" >> "$GITHUB_OUTPUT"
+          echo "pending=$(jq -r '.pending' <<< "$status")" >> "$GITHUB_OUTPUT"
+          echo "signature=$(jq -r '.signature // empty' <<< "$status")" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
         if: steps.queue.outputs.pending == 'true' || github.event_name == 'workflow_dispatch'
