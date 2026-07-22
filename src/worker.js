@@ -31,32 +31,48 @@ function publishedPostSnapshot(post) {
 async function sha256(value) {
 	const bytes = new TextEncoder().encode(value);
 	const digest = await crypto.subtle.digest("SHA-256", bytes);
-	return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+	return [...new Uint8Array(digest)]
+		.map((byte) => byte.toString(16).padStart(2, "0"))
+		.join("");
 }
 
 async function fetchHaloSignature(env) {
 	const origin = new URL(env.HALO_ORIGIN).origin;
 	const posts = [];
 	for (let page = 1; ; page++) {
-		const response = await fetch(`${origin}/apis/api.content.halo.run/v1alpha1/posts?page=${page}&size=${HALO_PAGE_SIZE}`, {
-			headers: { Accept: "application/json", "User-Agent": "Fuwari-Halo-Cron/1.0" },
-			signal: AbortSignal.timeout(20_000),
-		});
-		if (!response.ok) throw new Error(`Halo content check failed: HTTP ${response.status}`);
+		const response = await fetch(
+			`${origin}/apis/api.content.halo.run/v1alpha1/posts?page=${page}&size=${HALO_PAGE_SIZE}`,
+			{
+				headers: {
+					Accept: "application/json",
+					"User-Agent": "Fuwari-Halo-Cron/1.0",
+				},
+				signal: AbortSignal.timeout(20_000),
+			},
+		);
+		if (!response.ok)
+			throw new Error(`Halo content check failed: HTTP ${response.status}`);
 		const listing = await response.json();
 		const pageItems = listing.items || [];
 		posts.push(...pageItems);
 		const total = Number(listing.total ?? listing.totalElements);
-		const hasNext = typeof listing.hasNext === "boolean"
-			? listing.hasNext
-			: Number.isFinite(total) ? posts.length < total : pageItems.length === HALO_PAGE_SIZE;
+		const hasNext =
+			typeof listing.hasNext === "boolean"
+				? listing.hasNext
+				: Number.isFinite(total)
+					? posts.length < total
+					: pageItems.length === HALO_PAGE_SIZE;
 		if (!hasNext) break;
-		if (page >= 100) throw new Error("Halo post listing exceeded 10,000 records");
+		if (page >= 100)
+			throw new Error("Halo post listing exceeded 10,000 records");
 	}
 	const snapshot = posts
 		.map(publishedPostSnapshot)
 		.sort((a, b) => String(a.name).localeCompare(String(b.name)));
-	return { signature: await sha256(JSON.stringify(snapshot)), records: snapshot.length };
+	return {
+		signature: await sha256(JSON.stringify(snapshot)),
+		records: snapshot.length,
+	};
 }
 
 async function checkHaloAndQueue(env) {
@@ -67,9 +83,14 @@ async function checkHaloAndQueue(env) {
 		return { changed: false, ...current };
 	}
 	await env.HALO_SYNC_STATE.put(HALO_OBSERVED_KEY, current.signature, {
-		metadata: { records: current.records, observedAt: new Date().toISOString() },
+		metadata: {
+			records: current.records,
+			observedAt: new Date().toISOString(),
+		},
 	});
-	console.log(`Halo content changed (${current.records} records); deployment queued.`);
+	console.log(
+		`Halo content changed (${current.records} records); deployment queued.`,
+	);
 	return { changed: true, ...current };
 }
 
@@ -79,22 +100,33 @@ async function haloSyncStatus(request, env) {
 			env.HALO_SYNC_STATE.getWithMetadata(HALO_OBSERVED_KEY),
 			env.HALO_SYNC_STATE.get(HALO_DEPLOYED_KEY),
 		]);
-		return Response.json({
-			pending: Boolean(observed.value && observed.value !== deployed),
-			signature: observed.value,
-			records: observed.metadata?.records ?? null,
-			observedAt: observed.metadata?.observedAt ?? null,
-		}, { headers: { "Cache-Control": "no-store" } });
+		return Response.json(
+			{
+				pending: Boolean(observed.value && observed.value !== deployed),
+				signature: observed.value,
+				records: observed.metadata?.records ?? null,
+				observedAt: observed.metadata?.observedAt ?? null,
+			},
+			{ headers: { "Cache-Control": "no-store" } },
+		);
 	}
 	if (request.method !== "POST") {
-		return new Response("Method Not Allowed", { status: 405, headers: { Allow: "GET, POST" } });
+		return new Response("Method Not Allowed", {
+			status: 405,
+			headers: { Allow: "GET, POST" },
+		});
 	}
-	if (!env.HALO_SYNC_CALLBACK_TOKEN || request.headers.get("Authorization") !== `Bearer ${env.HALO_SYNC_CALLBACK_TOKEN}`) {
+	if (
+		!env.HALO_SYNC_CALLBACK_TOKEN ||
+		request.headers.get("Authorization") !==
+			`Bearer ${env.HALO_SYNC_CALLBACK_TOKEN}`
+	) {
 		return new Response("Unauthorized", { status: 401 });
 	}
 	const { signature } = await request.json();
 	const observed = await env.HALO_SYNC_STATE.get(HALO_OBSERVED_KEY);
-	if (!signature || signature !== observed) return new Response("Conflict", { status: 409 });
+	if (!signature || signature !== observed)
+		return new Response("Conflict", { status: 409 });
 	await env.HALO_SYNC_STATE.put(HALO_DEPLOYED_KEY, signature, {
 		metadata: { deployedAt: new Date().toISOString() },
 	});
@@ -103,7 +135,10 @@ async function haloSyncStatus(request, env) {
 
 async function serveR2Asset(request, env, url) {
 	if (request.method !== "GET" && request.method !== "HEAD") {
-		return new Response("Method Not Allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
+		return new Response("Method Not Allowed", {
+			status: 405,
+			headers: { Allow: "GET, HEAD" },
+		});
 	}
 	let key;
 	try {
@@ -111,17 +146,22 @@ async function serveR2Asset(request, env, url) {
 	} catch {
 		return new Response("Bad Request", { status: 400 });
 	}
-	if (!key || !key.startsWith("tu/")) return new Response("Not Found", { status: 404 });
-	const object = await env.IMAGE_BUCKET.get(key, request.headers.has("Range")
-		? { range: request.headers }
-		: undefined);
+	if (!key || !key.startsWith("tu/"))
+		return new Response("Not Found", { status: 404 });
+	const object = await env.IMAGE_BUCKET.get(
+		key,
+		request.headers.has("Range") ? { range: request.headers } : undefined,
+	);
 	if (!object) return new Response("Not Found", { status: 404 });
 	const headers = new Headers();
 	object.writeHttpMetadata(headers);
 	headers.set("etag", object.httpEtag);
 	headers.set("cache-control", "public, max-age=31536000, immutable");
 	if (object.range) {
-		headers.set("content-range", `bytes ${object.range.offset}-${object.range.offset + object.range.length - 1}/${object.size}`);
+		headers.set(
+			"content-range",
+			`bytes ${object.range.offset}-${object.range.offset + object.range.length - 1}/${object.size}`,
+		);
 		headers.set("content-length", String(object.range.length));
 	}
 	return new Response(request.method === "HEAD" ? null : object.body, {
@@ -135,16 +175,28 @@ async function proxyWorkersUsage() {
 		headers: { Accept: "application/json" },
 		cf: { cacheEverything: true, cacheTtl: 30 },
 	});
-	if (!upstream.ok) return Response.json({ error: "Workers usage backend unavailable" }, { status: 502 });
+	if (!upstream.ok)
+		return Response.json(
+			{ error: "Workers usage backend unavailable" },
+			{ status: 502 },
+		);
 	const data = await upstream.json();
 	const requests = Number(data?.usage?.requests);
 	const requestPercent = Number(data?.usage?.requestPercent);
 	if (!Number.isFinite(requests) || !Number.isFinite(requestPercent)) {
-		return Response.json({ error: "Workers usage response is invalid" }, { status: 502 });
+		return Response.json(
+			{ error: "Workers usage response is invalid" },
+			{ status: 502 },
+		);
 	}
-	return Response.json({ requests, requestPercent }, {
-		headers: { "Cache-Control": "public, max-age=30, stale-while-revalidate=60" },
-	});
+	return Response.json(
+		{ requests, requestPercent },
+		{
+			headers: {
+				"Cache-Control": "public, max-age=30, stale-while-revalidate=60",
+			},
+		},
+	);
 }
 
 export default {
@@ -160,11 +212,17 @@ export default {
 			try {
 				return await proxyWorkersUsage();
 			} catch {
-				return Response.json({ error: "Workers usage backend unavailable" }, { status: 502 });
+				return Response.json(
+					{ error: "Workers usage backend unavailable" },
+					{ status: 502 },
+				);
 			}
 		}
 		if (COMMENT_PATHS.some((prefix) => url.pathname.startsWith(prefix))) {
-			const target = new URL(`${url.pathname}${url.search}`, env.COMMENT_PROXY_ORIGIN);
+			const target = new URL(
+				`${url.pathname}${url.search}`,
+				env.COMMENT_PROXY_ORIGIN,
+			);
 			return fetch(new Request(target, request));
 		}
 		return env.ASSETS.fetch(request);

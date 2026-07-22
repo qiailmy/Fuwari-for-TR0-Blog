@@ -21,7 +21,7 @@ interface Props {
 	description: string;
 	draft: boolean;
 	style: string;
-  pinned?: boolean;
+	pinned?: boolean;
 }
 const {
 	entry,
@@ -34,7 +34,7 @@ const {
 	image,
 	description,
 	style,
-  pinned
+	pinned,
 } = Astro.props;
 const className = Astro.props.class;
 
@@ -46,8 +46,8 @@ const { remarkPluginFrontmatter } = await entry.render();
 
 // 从URL路径中提取文章ID
 const extractArticleId = (urlPath: string) => {
-  const match = urlPath.match(/\/(.*)?\/$/);
-  return match ? match[1] : null;
+	const match = urlPath.match(/\/(.*)?\/$/);
+	return match ? match[1] : null;
 };
 
 const articleId = extractArticleId(url);

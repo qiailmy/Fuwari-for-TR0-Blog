@@ -23,10 +23,10 @@ export function getTagUrl(tag: string): string {
 
 export function getCategoryUrl(category: string[] | string | null): string {
 	let categoryToUse: string | null = null;
-	
+
 	if (Array.isArray(category)) {
 		// 如果是数组，取第一个非空的分类
-		categoryToUse = category.find(cat => cat && cat.trim() !== "") || null;
+		categoryToUse = category.find((cat) => cat && cat.trim() !== "") || null;
 	} else {
 		categoryToUse = category;
 	}
@@ -34,7 +34,8 @@ export function getCategoryUrl(category: string[] | string | null): string {
 	if (
 		!categoryToUse ||
 		categoryToUse.trim() === "" ||
-		categoryToUse.trim().toLowerCase() === i18n(I18nKey.uncategorized).toLowerCase()
+		categoryToUse.trim().toLowerCase() ===
+			i18n(I18nKey.uncategorized).toLowerCase()
 	)
 		return url("/archive/?uncategorized=true");
 	return url(`/archive/?category=${encodeURIComponent(categoryToUse.trim())}`);

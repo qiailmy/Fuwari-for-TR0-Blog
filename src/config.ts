@@ -9,7 +9,8 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "顶呱呱的快乐",
-	keywords: "雾创岛,初春网络,初春网络旗下资源站,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
+	keywords:
+		"雾创岛,初春网络,初春网络旗下资源站,资源分享,资源网,PC 软件,PC 软件下载,安卓应用,安卓 APP, 实用 APP, 源码,源码分享,开源源码,优质资源,免费资源,无广告资源,绿色软件,手机应用,精品资源,资源合集,资源平台,软件下载,应用推荐,源码下载,雾创岛资源,综合资源网,技术教程,EdgeOne 教程,EdgeOne 配置,Cloudflare 教程,Cloudflare 设置,CDN 技术教程,EdgeOne 使用指南,Cloudflare 优化教程,网络技术教程,服务器技术教程,站长技术资讯,网站技术教程,建站技术分享,服务器运维教程,网站搭建教程,站长工具资源,网站优化技术,服务器配置教程,网站安全技术,站长资源分享,网站源码教程,CDN 站长工具,EdgeOne 站长指南,Cloudflare 站长教程",
 	description: "顶呱呱的快乐的个人博客，记录日常、医学学习与技术实践。",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
@@ -49,7 +50,7 @@ export const navBarConfig: NavBarConfig = {
 			name: "友情链接",
 			url: "/friends/",
 			external: false,
-		}
+		},
 	],
 };
 
@@ -70,7 +71,7 @@ export const profileConfig: ProfileConfig = {
 			url: "https://github.com/qiailmy",
 		},
 	],
-	icp: ""
+	icp: "",
 };
 
 export const licenseConfig: LicenseConfig = {
@@ -95,7 +96,8 @@ export const friends = [
 	{
 		name: "Serenite",
 		url: "https://blog.shiina.fun/",
-		avatar: "https://blog.shiina.fun/wp-content/uploads/2023/10/cropped-lieca5.0_20220630_150846363-scaled-e1696390999120.webp",
+		avatar:
+			"https://blog.shiina.fun/wp-content/uploads/2023/10/cropped-lieca5.0_20220630_150846363-scaled-e1696390999120.webp",
 		description: "Mindblowing Meteorology Student",
 	},
 	{

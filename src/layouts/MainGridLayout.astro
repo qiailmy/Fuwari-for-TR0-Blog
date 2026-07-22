@@ -27,13 +27,7 @@ interface Props {
 	headings?: MarkdownHeading[];
 }
 
-const {
-	title,
-	banner,
-	lang,
-	setOGTypeArticle,
-	headings = [],
-} = Astro.props;
+const { title, banner, lang, setOGTypeArticle, headings = [] } = Astro.props;
 const hasBannerCredit =
 	siteConfig.banner.enable && siteConfig.banner.credit.enable;
 const hasBannerLink = !!siteConfig.banner.credit.url;

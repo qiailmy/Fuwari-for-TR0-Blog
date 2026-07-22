@@ -29,7 +29,8 @@ interface Props {
 	setOGTypeArticle?: boolean;
 }
 
-let { title, banner, description, keywords, lang, setOGTypeArticle } = Astro.props;
+let { title, banner, description, keywords, lang, setOGTypeArticle } =
+	Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));

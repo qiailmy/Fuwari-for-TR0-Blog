@@ -88,7 +88,11 @@ export async function getCategoryList(): Promise<Category[]> {
 	});
 	const count: { [key: string]: number } = {};
 	allBlogPosts.forEach((post: { data: { category: string[] | null } }) => {
-		if (!post.data.category || !Array.isArray(post.data.category) || post.data.category.length === 0) {
+		if (
+			!post.data.category ||
+			!Array.isArray(post.data.category) ||
+			post.data.category.length === 0
+		) {
 			const ucKey = i18n(I18nKey.uncategorized);
 			count[ucKey] = count[ucKey] ? count[ucKey] + 1 : 1;
 			return;
@@ -108,7 +112,7 @@ export async function getCategoryList(): Promise<Category[]> {
 		ret.push({
 			name: c,
 			count: count[c],
-			url: getCategoryUrl([c])
+			url: getCategoryUrl([c]),
 		});
 	}
 	return ret;

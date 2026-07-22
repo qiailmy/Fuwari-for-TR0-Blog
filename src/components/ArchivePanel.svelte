@@ -39,7 +39,7 @@ function getTitle(): string {
 		return categories.join(", ");
 	}
 	if (tags.length > 0) {
-		return tags.map(tag => `#${tag}`).join(" ");
+		return tags.map((tag) => `#${tag}`).join(" ");
 	}
 	return i18n(I18nKey.archive);
 }
@@ -67,9 +67,9 @@ onMount(async () => {
 
 	if (categories.length > 0) {
 		filteredPosts = filteredPosts.filter(
-			(post) => 
-            Array.isArray(post.data.category) &&
-            post.data.category.some((cat) => categories.includes(cat))
+			(post) =>
+				Array.isArray(post.data.category) &&
+				post.data.category.some((cat) => categories.includes(cat)),
 		);
 	}
 
